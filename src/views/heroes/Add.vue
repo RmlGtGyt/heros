@@ -40,7 +40,7 @@
           .then((res) => {
             if (res.status === 201) {
               // console.log(this);
-              this.$router.push({name: 'heroes'})
+              this.$router.push({name: 'heroes'});
             } else {
               alert('注册失败');
             }

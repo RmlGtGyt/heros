@@ -55,7 +55,18 @@
         
       },
       handleEdit() {
-
+        axios
+          .put(`http://localhost:3000/heroes/${this.heroId}`, this.formData)
+          .then((res) => {
+            if (res.status === 200) {
+              this.$router.push({name: 'heroes'});
+            } else {
+              console.log('数据修改失败');
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          })
       }
     }
   };
