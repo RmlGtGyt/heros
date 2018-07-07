@@ -16,8 +16,6 @@
 </template>
 
 <script>
-  // 导入axios
-  import axios from 'axios';
   // 1. 绑定文本框
   // 2. 添加注册事件
   // 3. 发送请求
@@ -35,8 +33,8 @@
     methods: {
       // 处理注册逻辑
       handleAdd() {
-        axios
-          .post('http://localhost:3000/heroes', this.formData)
+        this.$http
+          .post('heroes', this.formData)
           .then((res) => {
             if (res.status === 201) {
               // console.log(this);

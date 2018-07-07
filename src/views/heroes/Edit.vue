@@ -16,9 +16,6 @@
 </template>
 
 <script>
-  // 引入axios模块
-  import axios from 'axios';
-
   export default {
     data() {
       return {
@@ -39,8 +36,8 @@
     methods: {
       // 根据id查询需要修改的英雄信息
       loadData() {
-        axios
-          .get(`http://localhost:3000/heroes/${this.heroId}`)
+        this.$http
+          .get(`heroes/${this.heroId}`)
           .then((res) => {
             if (res.status === 200) {
               this.formData = res.data;
@@ -55,8 +52,8 @@
         
       },
       handleEdit() {
-        axios
-          .put(`http://localhost:3000/heroes/${this.heroId}`, this.formData)
+        this.$http
+          .put(`heroes/${this.heroId}`, this.formData)
           .then((res) => {
             if (res.status === 200) {
               this.$router.push({name: 'heroes'});
