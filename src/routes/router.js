@@ -7,12 +7,14 @@ import HerList from '../views/heroes/List.vue';
 import WeaponList from '../views/weapons/List.vue';
 import EquipList from '../views/equips/List.vue';
 import HeroAdd from '../views/heroes/Add.vue';
+import HeroEdit from '../views/heroes/Edit.vue';
 
 // 注册插件
 Vue.use(VueRouter);
 
 // 2. 创建路由对象，配置路由规则
 const router = new VueRouter({
+  // 设置高亮显示效果
   linkExactActiveClass: 'active',
   routes: [
     { name: 'home', path: '/', redirect: {name: 'heroes'}},
@@ -20,7 +22,8 @@ const router = new VueRouter({
     { name: 'heroes', path: '/heroes', component: HerList},
     { name: 'weapons', path: '/weapons', component: WeaponList},
     { name: 'equips', path: '/equips', component: EquipList},
-    { name: 'heroadd', path: '/heroes/add', component: HeroAdd}
+    { name: 'heroadd', path: '/heroes/add', component: HeroAdd},
+    { name: 'heroedit', path: '/heroes/edit/:id', component: HeroEdit}
   ]
 });
 // 3. 导出模块
