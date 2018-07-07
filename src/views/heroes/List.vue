@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="sub-header">英雄列表</h2>
-    <a class="btn btn-success" href="add.html">Add</a>
+    <a class="btn btn-success" href="#/heroes/add">Add</a>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -14,13 +14,13 @@
         </thead>
         <tbody>
           <tr :key="item.id" v-for="(item, index) in list">
-            <td>{{ item.id }}</td>
+            <td>{{ index + 1 }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.gender }}</td>
             <td>
               <a href="edit.html">edit</a>
               &nbsp;&nbsp;
-              <a href="javascript:window.confirm('Are you sure?')">delete</a>
+              <a href="#" @click.prevent="handleDelete(item.id)">delete</a>
             </td>
           </tr>
         </tbody>
@@ -56,8 +56,29 @@
             }
           })
           .catch((err) => {
-            alert(err);
+            console.log(err);
           });
+      },
+      // 添加删除事件
+      handleDelete(id) {
+        // 删除提示
+        if (!confirm('您确定要删除本条数据吗？')) {
+          return;
+        }
+        // 发送请求删除数据
+        axios
+          .delete(`http://localhost:3000/heroes/${id}`)
+          .then((res) => {
+            if (res.status === 200) {
+              // 删除成功，重新渲染页面
+              this.loadData();
+            } else {
+              alert('数据删除失败');
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          })
       }
     }
   };

@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import HerList from '../views/heroes/List.vue';
 import WeaponList from '../views/weapons/List.vue';
 import EquipList from '../views/equips/List.vue';
+import HeroAdd from '../views/heroes/Add.vue';
 
 // 注册插件
 Vue.use(VueRouter);
@@ -14,11 +15,12 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   linkExactActiveClass: 'active',
   routes: [
-    {name: 'home', path: '/', redirect: {name: 'heroes'}},
+    { name: 'home', path: '/', redirect: {name: 'heroes'}},
     // 路由规则
     { name: 'heroes', path: '/heroes', component: HerList},
     { name: 'weapons', path: '/weapons', component: WeaponList},
     { name: 'equips', path: '/equips', component: EquipList},
+    { name: 'heroadd', path: '/heroes/add', component: HeroAdd}
   ]
 });
 // 3. 导出模块
